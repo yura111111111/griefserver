@@ -1,0 +1,27 @@
+name: brew
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        set -x
+
+        # Patch brew to overwrite always
+        formula_installer="$(brew --repo)"/Library/Homebrew/formula_installer.rb
+        code=" keg.link\(verbose: verbose\?"
+        sudo sed -Ei '' "s/$code.*/$code, overwrite: true\)/" "$formula_installer"
+
+        brew install \
+          bison \
+          re2c
+        brew install \
+          bzip2 \
+          enchant \
+          libffi \
+          intltool \
+          icu4c \
+          libiconv \
+          t1lib \
+          libxml2 \
+          libjpeg \
+          libxslt

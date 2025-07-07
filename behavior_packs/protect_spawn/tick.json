@@ -1,0 +1,7 @@
+{
+  "format_version": "1.10",
+  "minecraft:tick_function": {
+    "function": "protect_spawn:protect",
+    "ticks": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "Protect Spawn Behavior Pack",
+    "name": "Protect Spawn",
+    "uuid": "b1a2c3d4-e5f6-7890-ab12-cdef34567890",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 14, 0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "a1b2c3d4-e5f6-7890-ab12-cdef34567891",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "0f123456-7890-1234-5678-9abcdef01234",
+      "version": [0, 1, 0]
+    }
+  ]
+}

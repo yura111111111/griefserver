@@ -1,0 +1,23 @@
+name: Setup
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        set -x
+
+        sudo service slapd start
+        docker exec sql1 /opt/mssql-tools18/bin/sqlcmd -S 127.0.0.1 -U SA -C -P "<YourStrong@Passw0rd>" -Q "create login pdo_test with password='password', check_policy=off; create user pdo_test for login pdo_test; grant alter, control to pdo_test;"
+        sudo locale-gen de_DE
+
+        ./.github/scripts/setup-slapd.sh
+
+        sudo cp ext/snmp/tests/snmpd.conf /etc/snmp
+        sudo cp ext/snmp/tests/bigtest /etc/snmp
+        sudo service snmpd restart
+
+        sudo groupadd -g 5000 vmail
+        sudo useradd -m -d /var/vmail -s /bin/false -u 5000 -g vmail vmail
+        sudo cp ext/imap/tests/setup/dovecot.conf /etc/dovecot/dovecot.conf
+        sudo cp ext/imap/tests/setup/dovecotpass /etc/dovecot/dovecotpass
+        sudo service dovecot restart
